@@ -1,0 +1,17 @@
+body {
+    margin-top: 70px;
+    font-size: 14px;
+}
+
+.dropdown-item{
+    font-size: 14px;
+}
+
+canvas {
+    border: 1px solid rgba(0, 0, 0, 0.176);
+    border-radius: 0.375rem;
+}
+
+.toolbar .btn-group {
+    min-width: 80px;
+}
