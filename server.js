@@ -3,20 +3,33 @@ serveStatic = require("serve-static");
 network = require("network");
 port = process.env.PORT || 3000;
 project = require("./package.json");
-winston = require("winston");
 liveReload = require("livereload");
+
+const { createLogger, format, transports } = require("winston");
 
 connect().use("/", serveStatic(__dirname)).listen(port);
 
-let liveReloadServer = liveReload.createServer();
-liveReloadServer.watch(__dirname);
+liveReload.createServer().watch(__dirname);
 
-winston.info("Running:");
-winston.info("\t" + project.name);
-winston.info("LiveReload Server is watching:");
-winston.info("\t" + __dirname);
+const logger = createLogger({
+    format: format.combine(
+        format.colorize(),
+        format.splat(),
+        format.simple()
+    ),
+    transports: [new transports.Console()]
+});
+
+logger.info("Running:");
+logger.info(`\t${project.name}`);
+logger.info();
+
+logger.info("LiveReload Server is watching:");
+logger.info("\t" + __dirname);
+logger.info();
 
 network.get_active_interface(function (err, obj) {
-    winston.info("The magic happens at:");
-    winston.info("\t http://localhost:" + port + "/");
+    logger.info("The magic happens at:");
+    logger.info(`\thttp://localhost:${port}`);
+    logger.info(`\thttp://${obj.ip_address}:${port}`);
 });
