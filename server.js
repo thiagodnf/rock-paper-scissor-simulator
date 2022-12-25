@@ -1,4 +1,4 @@
-let connect = require("connect");
+const connect = require("connect");
 serveStatic = require("serve-static");
 network = require("network");
 port = process.env.PORT || 3000;
