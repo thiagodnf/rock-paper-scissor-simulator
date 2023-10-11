@@ -14,6 +14,7 @@ function resizeWindow() {
 }
 
 function setColorTheme(colorTheme) {
+
     $("html").attr("data-bs-theme", colorTheme);
 }
 
@@ -92,14 +93,32 @@ $(function () {
         addManually = Number($(this).data("hand"));
     });
 
+    if (!LocalStorageUtils.exists("theme")) {
+        LocalStorageUtils.setItem("theme", "auto");
+    }
+
+    if (LocalStorageUtils.getItem("theme") === "auto") {
+        setColorTheme(getSystemColorTheme());
+    } else {
+        setColorTheme(LocalStorageUtils.getItem("theme"));
+    }
+
+    $("#light-dark-mode .dropdown-item").removeClass("active");
+    $(`#light-dark-mode .dropdown-item[data-value=${LocalStorageUtils.getItem("theme")}]`).addClass("active");
+
     $("#light-dark-mode li button").click(function () {
 
         let colorTheme = $(this).data("value");
 
-        if (colorTheme === "auto") {
-            colorTheme = getSystemColorTheme();
-        }
+        $("#light-dark-mode .dropdown-item").removeClass("active");
+        $(`#light-dark-mode .dropdown-item[data-value=${colorTheme}]`).addClass("active");
 
-        setColorTheme(colorTheme);
+        LocalStorageUtils.setItem("theme", colorTheme);
+
+        if (colorTheme === "auto") {
+            setColorTheme(getSystemColorTheme());
+        } else {
+            setColorTheme(colorTheme);
+        }
     });
 });
