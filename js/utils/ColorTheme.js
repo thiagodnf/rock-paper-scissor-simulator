@@ -4,7 +4,7 @@ class ColorTheme {
 
     static init() {
 
-        let colorTheme = LocalStorageUtils.getItem("color-theme") || "auto";
+        let colorTheme = LocalStorageUtils.getItem("color-theme") || "light";
 
         ColorTheme.setColor(colorTheme);
 
