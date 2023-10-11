@@ -59,7 +59,7 @@ $(function () {
             .toggleClass("bi-stop-fill", game.isRunning);
     });
 
-    $("input[name=speed").change(function () {
+    $("input[name=speed]").change(function () {
         Settings.speed = Number(this.value);
     });
 
