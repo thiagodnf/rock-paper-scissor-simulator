@@ -13,15 +13,6 @@ function resizeWindow() {
     $(".side-panel .card").height(canvas.canvas.height);
 }
 
-function setColorTheme(colorTheme) {
-
-    $("html").attr("data-bs-theme", colorTheme);
-}
-
-function getSystemColorTheme() {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
-
 $(function () {
 
     chart = new MyChart("chart");
@@ -93,32 +84,5 @@ $(function () {
         addManually = Number($(this).data("hand"));
     });
 
-    if (!LocalStorageUtils.exists("theme")) {
-        LocalStorageUtils.setItem("theme", "auto");
-    }
-
-    if (LocalStorageUtils.getItem("theme") === "auto") {
-        setColorTheme(getSystemColorTheme());
-    } else {
-        setColorTheme(LocalStorageUtils.getItem("theme"));
-    }
-
-    $("#light-dark-mode .dropdown-item").removeClass("active");
-    $(`#light-dark-mode .dropdown-item[data-value=${LocalStorageUtils.getItem("theme")}]`).addClass("active");
-
-    $("#light-dark-mode li button").click(function () {
-
-        let colorTheme = $(this).data("value");
-
-        $("#light-dark-mode .dropdown-item").removeClass("active");
-        $(`#light-dark-mode .dropdown-item[data-value=${colorTheme}]`).addClass("active");
-
-        LocalStorageUtils.setItem("theme", colorTheme);
-
-        if (colorTheme === "auto") {
-            setColorTheme(getSystemColorTheme());
-        } else {
-            setColorTheme(colorTheme);
-        }
-    });
+    ColorTheme.init();
 });
