@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -22,6 +22,43 @@
         <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Rock Paper Scissor Simulator</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto "></ul>
+                    <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                        <li class="nav-item dropdown" id="light-dark-mode">
+                            <button class="btn btn-link nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                                <i class="fa-regular bi-circle-half"></i>
+                                <span class="ms-2 d-sm-none" data-i18n="color-theme">Color Theme</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end p-1">
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="light">
+                                        <i class="bi bi-sun-fill"></i>
+                                        <span class="ms-3 me-auto" data-i18n="light">Light</span>
+                                        <i class="bi bi-check2 d-none"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="dark">
+                                        <i class="bi bi-moon-stars-fill"></i>
+                                        <span class="ms-3 me-auto" data-i18n="dark">Dark</span>
+                                        <i class="bi bi-check2 d-none"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="auto">
+                                        <i class="bi bi-circle-half"></i>
+                                        <span class="ms-3 me-auto" data-i18n="auto">Auto</span>
+                                        <i class="bi bi-check2 d-none"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="toolbar">
@@ -39,7 +76,9 @@
                         <li><a class="dropdown-item add-hand" data-hand="0" href="#">Rock</a></li>
                         <li><a class="dropdown-item add-hand" data-hand="1" href="#">Paper</a></li>
                         <li><a class="dropdown-item add-hand" data-hand="2" href="#">Scissor</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item add-hand" data-hand="-1" href="#">None</a></li>
                     </ul>
                 </div>

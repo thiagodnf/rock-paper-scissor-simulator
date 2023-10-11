@@ -15,3 +15,12 @@ canvas {
 .toolbar .btn-group {
     min-width: 80px;
 }
+
+
+[data-bs-theme=light] div.vr {
+    color: var(--bs-secondary) !important
+}
+
+/* .dropdown-toggle::after {
+    color: var(--bs-body-color) !important
+} */

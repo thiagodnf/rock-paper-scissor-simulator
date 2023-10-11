@@ -13,6 +13,14 @@ function resizeWindow() {
     $(".side-panel .card").height(canvas.canvas.height);
 }
 
+function setColorTheme(colorTheme) {
+    $("html").attr("data-bs-theme", colorTheme);
+}
+
+function getSystemColorTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 $(function () {
 
     chart = new MyChart("chart");
@@ -28,7 +36,7 @@ $(function () {
 
     EventEmitter.on("canvas-mouse-up", (mouse) => {
 
-        if(addManually == -1){
+        if (addManually == -1) {
             return;
         }
 
@@ -84,4 +92,14 @@ $(function () {
         addManually = Number($(this).data("hand"));
     });
 
+    $("#light-dark-mode li button").click(function () {
+
+        let colorTheme = $(this).data("value");
+
+        if (colorTheme === "auto") {
+            colorTheme = getSystemColorTheme();
+        }
+
+        setColorTheme(colorTheme);
+    });
 });
