@@ -54,7 +54,12 @@ class ColorTheme {
         const color = allColors.filter(`[data-value='${colorTheme}']`);
 
         allColors.removeClass("active");
+        allColors.find(".bi-check2").addClass("d-none");
+
         color.addClass("active");
+        color.find(".bi-check2").removeClass("d-none");
+
+        ColorTheme.$el.find(".dropdown-toggle i").attr("class", color.find("i").first().attr("class"));
     }
 
 }
