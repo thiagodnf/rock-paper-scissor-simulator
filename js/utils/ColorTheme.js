@@ -4,7 +4,7 @@ class ColorTheme {
 
     static init() {
 
-        let colorTheme = LocalStorageUtils.getItem("color-theme") || "light";
+        let colorTheme = LocalStorage.getItem("color-theme") || "light";
 
         ColorTheme.setColor(colorTheme);
 
@@ -17,7 +17,7 @@ class ColorTheme {
 
         window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
 
-            if (LocalStorageUtils.getItem("color-theme") === "auto") {
+            if (LocalStorage.getItem("color-theme") === "auto") {
                 setColorTheme(getSystemColorTheme());
             }
         });
@@ -25,7 +25,7 @@ class ColorTheme {
 
     static setColor(colorTheme) {
 
-        LocalStorageUtils.setItem("color-theme", colorTheme);
+        LocalStorage.setItem("color-theme", colorTheme);
 
         if (colorTheme === "auto") {
             ColorTheme.setColorTheme(ColorTheme.getSystemColorTheme());
