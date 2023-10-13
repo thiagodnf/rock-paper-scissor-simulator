@@ -84,5 +84,9 @@ $(function () {
         addManually = Number($(this).data("hand"));
     });
 
+    ColorTheme.on("change", (colorTheme) => {
+        chart.setColorTheme(colorTheme);
+    });
+
     ColorTheme.init();
 });

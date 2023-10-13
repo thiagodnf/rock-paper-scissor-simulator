@@ -2,6 +2,8 @@ class ColorTheme {
 
     static $el = $(".color-theme");
 
+    static events = {};
+
     static init() {
 
         let colorTheme = LocalStorage.getItem("color-theme") || "light";
@@ -41,7 +43,10 @@ class ColorTheme {
     }
 
     static setColorTheme(colorTheme) {
+
         $("html").attr("data-bs-theme", colorTheme);
+
+        ColorTheme.trigger("change", colorTheme);
     }
 
     static getOption(colorTheme) {
@@ -60,6 +65,24 @@ class ColorTheme {
         color.find(".bi-check2").removeClass("d-none");
 
         ColorTheme.$el.find(".dropdown-toggle i").attr("class", color.find("i").first().attr("class"));
+    }
+
+    static on(eventName, callback) {
+
+        if (!ColorTheme.events[eventName]) {
+            ColorTheme.events[eventName] = [];
+        }
+
+        ColorTheme.events[eventName].push(callback);
+    }
+
+    static trigger(eventName, ...values) {
+
+        if (ColorTheme.events[eventName]) {
+            for (const callback of ColorTheme.events[eventName]) {
+                callback(...values);
+            }
+        }
     }
 
 }
