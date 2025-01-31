@@ -1,4 +1,4 @@
-# rock-paper-scissor-simulator
+# Rock Paper Scissor Simulator
  
 A javascript-based simulator for rock, paper, and scissor game
 
